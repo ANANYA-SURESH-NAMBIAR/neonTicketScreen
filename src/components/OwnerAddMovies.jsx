@@ -32,8 +32,8 @@ const OwnerAddMovies = () => {
       try {
         const headers = { Authorization: `Bearer ${token}` };
         const [screensRes, moviesRes] = await Promise.all([
-          fetch('http://localhost:5000/api/owner/screens', { headers }),
-          fetch('http://localhost:5000/api/owner/movies/available', { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/owner/screens`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/owner/movies/available`, { headers }),
         ]);
 
         const screensData = await screensRes.json();
@@ -84,7 +84,7 @@ const OwnerAddMovies = () => {
 
     setSubmittingId(movieId);
     try {
-      const res = await fetch('http://localhost:5000/api/owner/shows', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/owner/shows`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

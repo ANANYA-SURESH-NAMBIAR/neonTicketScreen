@@ -5,7 +5,7 @@ const MovieManagement = () => {
    const [movies, setMovies] = useState([]);
 
    useEffect(() => {
-      fetch('http://localhost:5000/api/movies')
+      fetch(`${import.meta.env.VITE_API_URL}/api/movies`)
          .then(res => res.json())
          .then(data => setMovies(data))
          .catch(console.error);

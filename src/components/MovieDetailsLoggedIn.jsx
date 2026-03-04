@@ -18,13 +18,13 @@ const MovieDetailsLoggedIn = () => {
 
    useEffect(() => {
       // Fetch Movie Details
-      fetch(`http://localhost:5000/api/movie/${movieId}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/movie/${movieId}`)
          .then(res => res.json())
          .then(data => setMovie(data))
          .catch(console.error);
 
       // Fetch Movie Reviews
-      fetch(`http://localhost:5000/api/movie/${movieId}/reviews`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/movie/${movieId}/reviews`)
          .then(res => res.json())
          .then(data => setReviews(data))
          .catch(console.error);
@@ -46,7 +46,7 @@ const MovieDetailsLoggedIn = () => {
 
       try {
          const token = localStorage.getItem('token');
-         const response = await fetch('http://localhost:5000/api/users/reviews', {
+         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/reviews`, {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',

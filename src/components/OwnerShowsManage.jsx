@@ -29,10 +29,10 @@ const OwnerShowsManage = () => {
       setError('');
       try {
         const [movieRes, showsRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/owner/movies/${movieId}`, {
+          fetch(`${import.meta.env.VITE_API_URL}/api/owner/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch(`http://localhost:5000/api/owner/movies/${movieId}/shows`, {
+          fetch(`${import.meta.env.VITE_API_URL}/api/owner/movies/${movieId}/shows`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

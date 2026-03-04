@@ -14,7 +14,7 @@ const TheatreInfo = () => {
     const [activeImageTab, setActiveImageTab] = useState('exterior');
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/theatre/${theatreId}`)
+        fetch(`${import.meta.env.VITE_API_URL}/api/theatre/${theatreId}`)
             .then(res => res.json())
             .then(data => {
                 setTheatre(data.theatre);

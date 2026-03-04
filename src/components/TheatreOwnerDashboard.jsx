@@ -17,8 +17,8 @@ const TheatreOwnerDashboard = () => {
          try {
             const headers = { 'Authorization': `Bearer ${token}` };
             const [dashRes, msgRes] = await Promise.all([
-               fetch('http://localhost:5000/api/owner/dashboard', { headers }),
-               fetch('http://localhost:5000/api/owner/messages', { headers })
+               fetch(`${import.meta.env.VITE_API_URL}/api/owner/dashboard`, { headers }),
+               fetch(`${import.meta.env.VITE_API_URL}/api/owner/messages`, { headers })
             ]);
             
             if (!dashRes.ok) throw new Error('Unauthorized');
@@ -47,7 +47,7 @@ const TheatreOwnerDashboard = () => {
    const markAsRead = async (msgId) => {
       const token = localStorage.getItem('ownerToken');
       try {
-         await fetch(`http://localhost:5000/api/owner/messages/${msgId}/read`, {
+         await fetch(`${import.meta.env.VITE_API_URL}/api/owner/messages/${msgId}/read`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` }
          });

@@ -33,7 +33,7 @@ const TheatreDetailsSetup = () => {
 
     try {
       const token = localStorage.getItem('ownerToken');
-      const response = await fetch('http://localhost:5000/api/owner/theatre/create', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

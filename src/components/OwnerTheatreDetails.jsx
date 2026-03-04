@@ -57,7 +57,7 @@ const OwnerTheatreDetails = () => {
 
     const fetchData = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/owner/theatre/details', { headers: getHeaders() });
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/details`, { headers: getHeaders() });
             if (!res.ok) throw new Error('Unauthorized');
             const d = await res.json();
             setData(d);
@@ -79,7 +79,7 @@ const OwnerTheatreDetails = () => {
 
     const handleAddAccessibility = async () => {
         if (!accessDetail.trim()) return;
-        await fetch('http://localhost:5000/api/owner/theatre/accessibility', { method: 'POST', headers: getHeaders(), body: JSON.stringify({ detail: accessDetail }) });
+        await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/accessibility`, { method: 'POST', headers: getHeaders(), body: JSON.stringify({ detail: accessDetail }) });
         setAccessDetail(''); setShowAddAccess(false); showSuccess('Accessibility detail added!'); fetchData();
     };
 
@@ -92,13 +92,13 @@ const OwnerTheatreDetails = () => {
                 const formData = new FormData();
                 formData.append('image', imgFile);
                 formData.append('tag', imgTag);
-                await fetch('http://localhost:5000/api/owner/theatre/images', {
+                await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/images`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
                     body: formData
                 });
             } else {
-                await fetch('http://localhost:5000/api/owner/theatre/images', {
+                await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/images`, {
                     method: 'POST',
                     headers: getHeaders(),
                     body: JSON.stringify({ img_url: imgUrl, tag: imgTag })
@@ -114,7 +114,7 @@ const OwnerTheatreDetails = () => {
 
     const handleAddRefreshment = async () => {
         if (!refName.trim() || !refPrice) return;
-        await fetch('http://localhost:5000/api/owner/theatre/refreshments', { method: 'POST', headers: getHeaders(), body: JSON.stringify({ name: refName, price: Number(refPrice) }) });
+        await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/refreshments`, { method: 'POST', headers: getHeaders(), body: JSON.stringify({ name: refName, price: Number(refPrice) }) });
         setRefName(''); setRefPrice(''); setShowAddRefreshment(false); showSuccess('Refreshment added!'); fetchData();
     };
 
@@ -122,7 +122,7 @@ const OwnerTheatreDetails = () => {
         if (!screenName.trim()) return;
         const validRows = screenRows.filter(r => r.row.trim() && Number(r.seats) > 0);
         const totalSeats = validRows.reduce((sum, r) => sum + Number(r.seats), 0);
-        await fetch('http://localhost:5000/api/owner/theatre/screens', {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/screens`, {
             method: 'POST',
             headers: getHeaders(),
             body: JSON.stringify({ name: screenName, totalSeats, seatLayout: validRows.map(r => ({ row: r.row, seats: Number(r.seats) })) })
@@ -132,7 +132,7 @@ const OwnerTheatreDetails = () => {
 
     const handleAddSeat = async () => {
         if (!seatScreenId || !seatNumber.trim() || !seatPrice || !seatRow || !seatCol) return;
-        await fetch('http://localhost:5000/api/owner/theatre/seats', {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/owner/theatre/seats`, {
             method: 'POST',
             headers: getHeaders(),
             body: JSON.stringify({ screenId: seatScreenId, seat_number: seatNumber, seat_type: seatType, price: Number(seatPrice), row: seatRow, col: Number(seatCol) })

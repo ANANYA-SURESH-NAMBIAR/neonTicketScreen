@@ -15,7 +15,7 @@ const TheatreAnalytics = () => {
             console.log('Fetching theatre analytics data...');
             
             // First test the simple endpoint
-            const testResponse = await fetch('http://localhost:5000/api/owner/analytics/test', {
+            const testResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/owner/analytics/test`, {
                headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log('Owner test response status:', testResponse.status);
@@ -29,7 +29,7 @@ const TheatreAnalytics = () => {
             }
             
             // Now try the real analytics endpoint
-            const response = await fetch('http://localhost:5000/api/owner/analytics', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/owner/analytics`, {
                headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log('Owner analytics response status:', response.status);

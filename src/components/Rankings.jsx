@@ -10,7 +10,7 @@ const Rankings = () => {
             console.log('Fetching admin rankings data...');
             
             // First test the simple endpoint
-            const testResponse = await fetch('http://localhost:5000/api/admin/test', {
+            const testResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/test`, {
                headers: { 
                   'Authorization': `Bearer ${localStorage.getItem('adminToken') || 'test-token'}`,
                   'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ const Rankings = () => {
             }
             
             // Now try the real rankings endpoint
-            const response = await fetch('http://localhost:5000/api/admin/rankings', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/rankings`, {
                headers: { 
                   'Authorization': `Bearer ${localStorage.getItem('adminToken') || 'test-token'}`,
                   'Content-Type': 'application/json'

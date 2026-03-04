@@ -16,13 +16,13 @@ const TheatreSeatSelection = () => {
 
    useEffect(() => {
       // Fetch Movie Details
-      fetch(`http://localhost:5000/api/movie/${movieId}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/movie/${movieId}`)
          .then(res => res.json())
          .then(data => setMovie(data))
          .catch(console.error);
 
       // Fetch Shows and Group by Theatre
-      fetch(`http://localhost:5000/api/movie/${movieId}/shows`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/movie/${movieId}/shows`)
          .then(res => res.json())
          .then(data => {
             console.log('Shows for movie:', movieId, data);
@@ -51,7 +51,7 @@ const TheatreSeatSelection = () => {
    // Fetch Seats when a Show is selected
    useEffect(() => {
       if (selectedShow) {
-         fetch(`http://localhost:5000/api/show/${selectedShow._id}`)
+         fetch(`${import.meta.env.VITE_API_URL}/api/show/${selectedShow._id}`)
             .then(res => res.json())
             .then(data => {
                setSeats(data.seats);

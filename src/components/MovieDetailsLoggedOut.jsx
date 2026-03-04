@@ -7,7 +7,7 @@ const MovieDetailsLoggedOut = () => {
    const [movie, setMovie] = useState(null);
 
    useEffect(() => {
-      fetch(`http://localhost:5000/api/movie/${movieId}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/movie/${movieId}`)
          .then(res => res.json())
          .then(data => setMovie(data))
          .catch(console.error);

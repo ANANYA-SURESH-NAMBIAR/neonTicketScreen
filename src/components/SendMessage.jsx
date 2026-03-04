@@ -15,7 +15,7 @@ const SendMessageContent = () => {
    useEffect(() => {
       const fetchTheatres = async () => {
          try {
-            const response = await fetch('http://localhost:5000/api/theatres', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/theatres`, {
                headers: {
                   'Authorization': `Bearer ${localStorage.getItem('adminToken') || 'test-token'}`
                }
@@ -54,7 +54,7 @@ const SendMessageContent = () => {
       const testAdminMessage = async () => {
          try {
             console.log('Testing admin message creation...');
-            const response = await fetch('http://localhost:5000/api/admin/test-message', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/test-message`, {
                headers: {
                   'Authorization': `Bearer ${localStorage.getItem('adminToken') || 'test-token'}`
                }
@@ -90,10 +90,10 @@ const SendMessageContent = () => {
          };
 
          if (recipientType === 'all') {
-            endpoint = 'http://localhost:5000/api/admin/messages/send-all';
+            endpoint = `${import.meta.env.VITE_API_URL}/api/admin/messages/send-all`;
             console.log('Sending to all theatres');
          } else if (recipientType === 'specific' && selectedTheatres.length > 0) {
-            endpoint = 'http://localhost:5000/api/admin/messages/send';
+            endpoint = `${import.meta.env.VITE_API_URL}/api/admin/messages/send`;
             // Find the selected theatre to get its owner ID
             const selectedTheatre = theatres.find(t => t._id === selectedTheatres[0]);
             if (selectedTheatre && selectedTheatre.owner) {

@@ -58,7 +58,7 @@ const AddNewMovie = () => {
             console.log(`${key}:`, value);
          }
 
-         const response = await fetch('http://localhost:5000/api/admin/add-movie', {
+         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/add-movie`, {
             method: 'POST',
             headers: {
                'Authorization': `Bearer ${localStorage.getItem('adminToken') || 'test-token'}`

@@ -18,10 +18,10 @@ const UserProfile = () => {
         const fetchData = async () => {
             try {
                 const [profileRes, bookingsRes] = await Promise.all([
-                    fetch('http://localhost:5000/api/users/profile', {
+                    fetch(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     }),
-                    fetch('http://localhost:5000/api/users/bookings', {
+                    fetch(`${import.meta.env.VITE_API_URL}/api/users/bookings`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     })
                 ]);
