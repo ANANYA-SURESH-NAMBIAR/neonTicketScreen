@@ -1,4 +1,3 @@
- 
 const express = require("express");
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
@@ -6,10 +5,12 @@ const { authorize } = require("../middleware/roleMiddleware");
 
 const {
   dashboard,
+  createTheatre,
   analytics,
   analyticsGraphs,
   analyticsDetailed,
   analyticsGraphsMonthly,
+  testAnalytics,
   ownerMovies,
   ownerMovieDetails,
   ownerMovieShows,
@@ -28,7 +29,7 @@ const {
   addTheatreImage,
   addRefreshment,
   addScreen,
-  addSeat
+  addSeat,
 } = require("../controllers/ownerController");
 
 router.use(protect, authorize("TheatreOwner"));
@@ -41,7 +42,8 @@ router.get("/messages", adminMessages);
 router.patch("/messages/:messageId/read", markMessageAsRead);
 router.get("/reviews", theatreReviews);
 
-// Theatre Details (full view + add content)
+// Theatre Management
+router.post("/theatre/create", createTheatre);
 router.get("/theatre/details", ownerTheatreDetails);
 router.post("/theatre/accessibility", addAccessibility);
 router.post("/theatre/images", upload.single("image"), addTheatreImage);
@@ -51,6 +53,7 @@ router.post("/theatre/seats", addSeat);
 
 // Analytics
 router.get("/analytics", analytics);
+router.get("/analytics/test", testAnalytics);
 router.get("/analytics/detailed", analyticsDetailed);
 router.get("/analytics/graphs", analyticsGraphs);
 router.get("/analytics/graphs/monthly", analyticsGraphsMonthly);

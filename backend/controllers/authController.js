@@ -28,8 +28,53 @@ const login = async (req, res) => {
   res.json({ token: generateToken(user._id, user.role) });
 };
 
-const logout = async (req,res) =>{
-    res.json({message:"Logged out successfully"});
+const logout = async (req, res) => {
+  res.json({ message: "Logged out successfully" });
 };
 
-module.exports = { register, login, logout };
+const forgotPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res
+        .status(400)
+        .json({ msg: "Email and new password are required" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      // Don't reveal if email exists or not for security
+      return res.json({
+        msg: "If an account with this email exists, the password has been reset.",
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await User.findByIdAndUpdate(user._id, { password: hashedPassword });
+
+    console.log(`Password reset for email: ${email}`); // In production, send confirmation email
+
+    res.json({
+      msg: "Password reset successfully!",
+      // For development, include user info (remove in production)
+      user:
+        process.env.NODE_ENV === "development"
+          ? { email: user.email, role: user.role }
+          : undefined,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  logout,
+  forgotPassword,
+};

@@ -262,7 +262,7 @@ const TicketPayment = () => {
           <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
         </div>
         <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] text-center">
-          Secured Payment Gateway • © 2024
+          Secured Payment Gateway • © 2026
         </p>
       </footer>
     </div>

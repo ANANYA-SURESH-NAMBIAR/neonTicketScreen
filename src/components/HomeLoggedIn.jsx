@@ -75,12 +75,12 @@ const HomeLoggedIn = () => {
 
         <div className="flex items-center space-x-4">
           {/* City Dropdown Selection */}
-          <div className="flex items-center text-sm font-semibold text-gray-600 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 cursor-pointer">
+          {/* <div className="flex items-center text-sm font-semibold text-gray-600 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 cursor-pointer">
             <span>Kochi</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 ml-1">
               <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
             </svg>
-          </div>
+          </div> */}
 
           {/* Profile Avatar & Menu Toggle */}
           <div className="relative">
@@ -319,14 +319,14 @@ const HomeLoggedIn = () => {
           <span className="text-white font-black text-2xl tracking-tighter italic mr-2">S</span>
           <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
         </div>
-
+{/* 
         <div className="grid grid-cols-2 gap-8 mb-12">
           <div className="space-y-4">
             <h5 className="text-white font-black text-xs uppercase tracking-widest mb-4">Support</h5>
             <button className="block text-sm font-medium hover:text-white transition-colors">Help Center</button>
             <button className="block text-sm font-medium hover:text-white transition-colors">Contact Details</button>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex space-x-6 mb-12 border-t border-white/10 pt-10">
           <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -338,7 +338,7 @@ const HomeLoggedIn = () => {
         </div>
 
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-center opacity-30">
-          © 2024 Screenema Entertainment
+          © 2026 Screenema Entertainment
         </p>
       </footer>
 

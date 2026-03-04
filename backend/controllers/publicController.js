@@ -1,4 +1,3 @@
- 
 const City = require("../models/City");
 const Movie = require("../models/Movie");
 const Theatre = require("../models/Theatre");
@@ -7,7 +6,6 @@ const Seat = require("../models/Seat");
 const BookedSeats = require("../models/BookedSeats");
 const Booking = require("../models/Booking");
 const Review = require("../models/Review");
-
 
 // GET /
 exports.getCities = async (req, res) => {
@@ -18,8 +16,6 @@ exports.getCities = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-
 
 // GET /movies?city=cityName
 exports.getMovies = async (req, res) => {
@@ -34,18 +30,18 @@ exports.getMovies = async (req, res) => {
     // theatres in city
     const theatres = await Theatre.find({ city });
 
-    const theatreIds = theatres.map(t => t._id);
+    const theatreIds = theatres.map((t) => t._id);
 
     // shows in those theatres
     const shows = await Show.find({
-      theatre: { $in: theatreIds }
+      theatre: { $in: theatreIds },
     }).populate("movie");
 
     // unique movies
     const movies = [];
     const seen = new Set();
 
-    shows.forEach(s => {
+    shows.forEach((s) => {
       if (!seen.has(s.movie._id.toString())) {
         seen.add(s.movie._id.toString());
         movies.push(s.movie);
@@ -53,13 +49,10 @@ exports.getMovies = async (req, res) => {
     });
 
     res.json(movies);
-
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
-
-
 
 // GET /movie/:id
 exports.getMovieDetails = async (req, res) => {
@@ -72,8 +65,6 @@ exports.getMovieDetails = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-
 
 // GET /theatre/:id
 exports.getTheatreDetails = async (req, res) => {
@@ -88,26 +79,28 @@ exports.getTheatreDetails = async (req, res) => {
     const [refreshments, images, accessibilityDocs] = await Promise.all([
       Refreshment.find({ theatre: theatre._id }),
       TheatreImage.find({ theatre: theatre._id }),
-      Accessibility.find({ theatre: theatre._id })
+      Accessibility.find({ theatre: theatre._id }),
     ]);
 
-    const exteriorImages = images.filter(i => i.tag === "exterior").map(i => i.img_url);
-    const interiorImages = images.filter(i => i.tag === "interior").map(i => i.img_url);
-    const accessibilityDetails = accessibilityDocs.map(a => a.detail);
+    const exteriorImages = images
+      .filter((i) => i.tag === "exterior")
+      .map((i) => i.img_url);
+    const interiorImages = images
+      .filter((i) => i.tag === "interior")
+      .map((i) => i.img_url);
+    const accessibilityDetails = accessibilityDocs.map((a) => a.detail);
 
     res.json({
       theatre,
       refreshments,
       exteriorImages,
       interiorImages,
-      accessibilityDetails
+      accessibilityDetails,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
-
-
 
 // GET /show/:id
 exports.getShowDetails = async (req, res) => {
@@ -124,25 +117,24 @@ exports.getShowDetails = async (req, res) => {
     // bookings of this show
     const bookings = await Booking.find({ show: show._id });
 
-    const bookingIds = bookings.map(b => b._id);
+    const bookingIds = bookings.map((b) => b._id);
 
     // booked seats
     const booked = await BookedSeats.find({
-      booking: { $in: bookingIds }
+      booking: { $in: bookingIds },
     });
 
-    const bookedSeatIds = booked.map(b => b.seat.toString());
+    const bookedSeatIds = booked.map((b) => b.seat.toString());
 
-    const resultSeats = seats.map(seat => ({
+    const resultSeats = seats.map((seat) => ({
       ...seat.toObject(),
-      booked: bookedSeatIds.includes(seat._id.toString())
+      booked: bookedSeatIds.includes(seat._id.toString()),
     }));
 
     res.json({
       show,
-      seats: resultSeats
+      seats: resultSeats,
     });
-
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -168,6 +160,16 @@ exports.getMovieReviews = async (req, res) => {
       .sort({ createdAt: -1 });
 
     res.json(reviews);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// GET /theatres
+exports.getTheatres = async (req, res) => {
+  try {
+    const theatres = await Theatre.find().select("name location city owner");
+    res.json(theatres);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -7,6 +7,7 @@ const TheatreOwnerDashboard = () => {
    const [theatre, setTheatre] = useState(null);
    const [messages, setMessages] = useState([]);
    const [loading, setLoading] = useState(true);
+   const [needsTheatre, setNeedsTheatre] = useState(false);
 
    useEffect(() => {
       const token = localStorage.getItem('ownerToken');
@@ -19,11 +20,19 @@ const TheatreOwnerDashboard = () => {
                fetch('http://localhost:5000/api/owner/dashboard', { headers }),
                fetch('http://localhost:5000/api/owner/messages', { headers })
             ]);
+            
             if (!dashRes.ok) throw new Error('Unauthorized');
+            
             const dashData = await dashRes.json();
             const msgData = msgRes.ok ? await msgRes.json() : [];
+            
             setTheatre(dashData.theatre);
             setMessages(msgData);
+            
+            // If no theatre exists, show a message or redirect
+            if (dashData.needsTheatre) {
+               setNeedsTheatre(true);
+            }
          } catch (err) {
             console.error(err);
             localStorage.removeItem('ownerToken');
@@ -57,6 +66,42 @@ const TheatreOwnerDashboard = () => {
             <div className="text-center">
                <div className="w-10 h-10 border-4 border-[#00898F] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Loading dashboard...</p>
+            </div>
+         </div>
+      );
+   }
+
+   // Show setup screen if no theatre exists
+   if (needsTheatre || !theatre) {
+      return (
+         <div className="min-h-screen bg-[#F0F5F5] flex items-center justify-center font-sans px-4">
+            <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 border border-gray-100 text-center">
+               <div className="w-16 h-16 bg-[#00898F] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#00898F]/20">
+                  <span className="text-white font-black text-2xl italic">S</span>
+               </div>
+               <h1 className="text-2xl font-black text-gray-900 tracking-tighter mb-3">Welcome to Screenema</h1>
+               <p className="text-[#00898F] text-[10px] font-black uppercase tracking-[0.3em] mb-6">Theatre Owner Portal</p>
+               
+               <div className="bg-[#FFF8F0] border border-[#FF8C00]/20 rounded-xl p-4 mb-6">
+                  <p className="text-sm font-bold text-gray-700 mb-2">No Theatre Found</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                     You need to create a theatre profile before accessing the dashboard. Let's get your theatre set up!
+                  </p>
+               </div>
+               
+               <Link
+                  to="/owner/theatre/create"
+                  className="w-full bg-[#FF8C00] text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg shadow-[#FF8C00]/20 hover:bg-[#E67E00] transition-colors block"
+               >
+                  Create Your Theatre
+               </Link>
+               
+               <button
+                  onClick={handleLogout}
+                  className="w-full mt-3 text-gray-400 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition-colors"
+               >
+                  Logout
+               </button>
             </div>
          </div>
       );
@@ -159,7 +204,7 @@ const TheatreOwnerDashboard = () => {
                <span className="text-white font-black text-2xl tracking-tighter italic mr-2">S</span>
                <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
             </div>
-            <div className="grid grid-cols-2 gap-6 mb-8 text-white/60 text-[10px] font-bold uppercase tracking-widest">
+            {/* <div className="grid grid-cols-2 gap-6 mb-8 text-white/60 text-[10px] font-bold uppercase tracking-widest">
                <div className="space-y-3">
                   <p className="text-white mb-2">Support</p>
                   <p>Help Center</p>
@@ -170,9 +215,9 @@ const TheatreOwnerDashboard = () => {
                   <p>Privacy Policy</p>
                   <p>Terms of Use</p>
                </div>
-            </div>
+            </div> */}
             <p className="text-white/20 text-[8px] font-bold uppercase tracking-[0.3em] text-center pt-8 border-t border-white/5">
-               © 2024 Screenema Manager • All Rights Reserved
+               2026 Screenema Manager • All Rights Reserved
             </p>
          </footer>
       </div>

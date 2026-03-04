@@ -282,12 +282,28 @@ const OwnerAddMovies = () => {
         </section>
       </main>
 
-      <footer className="px-6 py-10 text-center">
-        <p className="text-gray-300 text-[8px] font-bold uppercase tracking-[0.3em]">
-          © 2024 Screenema Manager • Management Suite
-        </p>
-      </footer>
-    </div>
+      <footer className="px-6 py-10 bg-[#00666B] mt-10">
+                <div className="flex items-center mb-6">
+                    <span className="text-white font-black text-2xl tracking-tighter italic mr-2">S</span>
+                    <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
+                </div>
+                {/* <div className="grid grid-cols-2 gap-6 mb-8 text-white/60 text-[10px] font-bold uppercase tracking-widest">
+                    <div className="space-y-3">
+                        <p className="text-white mb-2">Support</p>
+                        <p>Help Center</p>
+                        <p>Contact Details</p>
+                    </div>
+                    <div className="space-y-3">
+                        <p className="text-white mb-2">Legal</p>
+                        <p>Privacy Policy</p>
+                        <p>Terms of Use</p>
+                    </div>
+                </div> */}
+                <p className="text-white/20 text-[8px] font-bold uppercase tracking-[0.3em] text-center pt-8 border-t border-white/5">
+                    © 2026 Screenema Manager • All Rights Reserved
+                </p>
+            </footer>
+        </div>
   );
 };
 

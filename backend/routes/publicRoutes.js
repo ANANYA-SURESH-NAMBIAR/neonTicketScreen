@@ -1,4 +1,3 @@
- 
 const express = require("express");
 const router = express.Router();
 
@@ -6,6 +5,7 @@ const publicController = require("../controllers/publicController");
 
 router.get("/", publicController.getCities);
 router.get("/movies", publicController.getMovies);
+router.get("/theatres", publicController.getTheatres);
 router.get("/movie/:movieId", publicController.getMovieDetails);
 router.get("/movie/:movieId/reviews", publicController.getMovieReviews);
 router.get("/movie/:movieId/shows", publicController.getMovieShows);

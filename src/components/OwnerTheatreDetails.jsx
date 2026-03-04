@@ -464,7 +464,21 @@ const OwnerTheatreDetails = () => {
                     <span className="text-white font-black text-2xl tracking-tighter italic mr-2">S</span>
                     <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
                 </div>
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] text-center">© 2024 Screenema Manager</p>
+                {/* <div className="grid grid-cols-2 gap-6 mb-8 text-white/60 text-[10px] font-bold uppercase tracking-widest">
+                    <div className="space-y-3">
+                        <p className="text-white mb-2">Support</p>
+                        <p>Help Center</p>
+                        <p>Contact Details</p>
+                    </div>
+                    <div className="space-y-3">
+                        <p className="text-white mb-2">Legal</p>
+                        <p>Privacy Policy</p>
+                        <p>Terms of Use</p>
+                    </div>
+                </div> */}
+                <p className="text-white/20 text-[8px] font-bold uppercase tracking-[0.3em] text-center pt-8 border-t border-white/5">
+                    © 2026 Screenema Manager • All Rights Reserved
+                </p>
             </footer>
         </div>
     );

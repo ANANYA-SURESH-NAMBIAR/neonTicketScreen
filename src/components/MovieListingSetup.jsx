@@ -83,7 +83,7 @@ const MovieListingSetup = () => {
          </section>
 
          {/* Cast & Crew Section (Simplified) */}
-         <section className="bg-white p-8 rounded-[2.5rem] shadow-sm">
+         {/* <section className="bg-white p-8 rounded-[2.5rem] shadow-sm">
             <div className="flex justify-between items-center mb-8">
                <h3 className="text-lg font-black text-gray-900 uppercase tracking-widest border-l-4 border-[#FF8C00] pl-4">Cast & Crew</h3>
                <button className="text-[#FF8C00] text-xs font-black uppercase tracking-widest">Add Member</button>
@@ -98,7 +98,7 @@ const MovieListingSetup = () => {
                   </div>
                ))}
             </div>
-         </section>
+         </section> */}
 
          <button className="w-full bg-[#FF8C00] text-white py-5 rounded-3xl font-black uppercase tracking-[0.3em] shadow-2xl shadow-[#FF8C00]/30 active:scale-[0.98] transition-all">
             Publish Movie listing

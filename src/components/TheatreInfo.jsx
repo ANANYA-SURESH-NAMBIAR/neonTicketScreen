@@ -221,7 +221,7 @@ const TheatreInfo = () => {
                     <span className="text-white font-bold text-xl uppercase tracking-widest">Screenema</span>
                 </div>
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] text-center">
-                    © 2024 Screenema Entertainment
+                    © 2026 Screenema Entertainment
                 </p>
             </footer>
         </div>

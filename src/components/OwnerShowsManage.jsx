@@ -162,7 +162,7 @@ const OwnerShowsManage = () => {
 
       <footer className="px-6 py-10 text-center">
         <p className="text-gray-300 text-[8px] font-bold uppercase tracking-[0.3em]">
-          © 2024 Screenema Manager • Management Suite
+          © 2026 Screenema Manager • Management Suite
         </p>
       </footer>
     </div>

@@ -91,7 +91,7 @@ const MovieDetailsLoggedOut = () => {
             </section>
 
             {/* Cast & Crew Placeholder */}
-            <section className="px-4 py-12 space-y-10">
+            {/* <section className="px-4 py-12 space-y-10">
                <div>
                   <h3 className="text-xl font-black text-gray-900 mb-8 uppercase tracking-widest">Top Cast</h3>
                   <div className="flex space-x-6 overflow-x-auto pb-4 scrollbar-hide">
@@ -103,12 +103,12 @@ const MovieDetailsLoggedOut = () => {
                      ))}
                   </div>
                </div>
-            </section>
+            </section> */}
          </main>
 
          {/* Simplified Footer */}
          <footer className="px-6 py-12 bg-[#00666B] text-white/40">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-center mb-4">© 2024 Screenema</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-center mb-4">© 2026 Screenema</p>
          </footer>
       </div>
    );

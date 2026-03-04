@@ -1,10 +1,4 @@
- 
 const mongoose = require("mongoose");
-
-const personSchema = new mongoose.Schema({
-  name: String,
-  image: String
-}, { _id: false });
 
 const movieSchema = new mongoose.Schema({
   title: String,
@@ -16,8 +10,8 @@ const movieSchema = new mongoose.Schema({
   age_rating: String,
   poster_url: String,
   trailer_url: String,
-  cast: [personSchema],
-  crew: [personSchema]
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Movie", movieSchema);
