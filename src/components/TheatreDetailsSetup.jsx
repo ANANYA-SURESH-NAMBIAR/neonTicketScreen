@@ -115,7 +115,7 @@ const TheatreDetailsSetup = () => {
              </div>
           </section>
 
-          <section className="bg-stone-900 p-8 rounded-[2.5rem] shadow-2xl space-y-8">
+          {/* <section className="bg-stone-900 p-8 rounded-[2.5rem] shadow-2xl space-y-8">
              <h3 className="text-lg font-black text-white uppercase tracking-widest border-l-4 border-[#FF8C00] pl-4">Amenities & Configuration</h3>
              
              <div className="grid grid-cols-1 gap-4">
@@ -126,7 +126,7 @@ const TheatreDetailsSetup = () => {
                   </div>
                 ))}
              </div>
-          </section>
+          </section> */}
 
           <button 
             type="submit"

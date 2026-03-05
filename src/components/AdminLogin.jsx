@@ -105,7 +105,7 @@ const AdminLogin = () => {
 
             <div className="mt-6 text-center">
                <Link to="/owner/login" className="text-white/30 text-[9px] font-bold uppercase tracking-widest hover:text-[#FF8C00] transition-colors">
-                  Theatre Owner Login
+                   Admin Login
                </Link>
             </div>
          </div>
