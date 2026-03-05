@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Public & user-facing pages
@@ -42,7 +42,11 @@ import OwnerAddMovies from './components/OwnerAddMovies.jsx';
 import TheatreAnalytics from './components/TheatreAnalytics.jsx';
 
 const App = () => {
+      useEffect(() => {
+  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+}, []);
   return (
+    
     <Routes>
       {/* Public & user routes */}
       <Route path="/" element={<HomeLoggedOut />} />
@@ -86,6 +90,8 @@ const App = () => {
       <Route path="/owner/movies/manage" element={<MovieManagement />} />
       <Route path="/owner/theatre/details" element={<OwnerTheatreDetails />} />
     </Routes>
+
+    
   );
 };
 
